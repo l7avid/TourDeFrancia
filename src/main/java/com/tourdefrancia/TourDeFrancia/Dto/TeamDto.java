@@ -1,19 +1,15 @@
-package com.tourdefrancia.TourDeFrancia.collections;
+package com.tourdefrancia.TourDeFrancia.Dto;
 
-
+import com.tourdefrancia.TourDeFrancia.collections.Cyclist;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
-@Document(collection = "team")
-public class Team {
+public class TeamDto {
 
-    @Id
     private String id;
     @NotBlank(message = "team name cannot be blank!")
     private String teamName;
