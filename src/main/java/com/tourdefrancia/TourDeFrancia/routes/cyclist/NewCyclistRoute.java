@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Mono;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
@@ -23,10 +24,7 @@ public class NewCyclistRoute {
                         .flatMap(cyclistDto -> ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(cyclistDto))
-                        .onErrorResume(throwable -> {
-                            System.out.println(throwable);
-                            return ServerResponse.badRequest().build();
-                        }
-                        ));
+//                        .onErrorResume(throwable -> ServerResponse.badRequest().build())
+        );
     }
 }

@@ -14,4 +14,8 @@ public interface ICyclistRepo extends ReactiveMongoRepository<Cyclist, String> {
     Flux<Cyclist> findByCountry(String country);
 
     Mono<Cyclist> findByCyclistCode(String cyclistCode);
+
+    Mono<Boolean> existsByCyclistCode(String cyclistCode);
+
+
 }
