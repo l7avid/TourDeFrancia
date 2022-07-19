@@ -11,7 +11,7 @@ public interface ITeamRepo extends ReactiveMongoRepository<Team, String> {
 
     Flux<Team> findByCountry(String teamCountry);
 
-    Mono<Team> findByName(String teamName);
+    Mono<Team> findByTeamName(String teamName);
 
-    Mono<Team> findByCode(String teamCode);
+    Mono<Team> findByTeamCode(String teamCode);
 }

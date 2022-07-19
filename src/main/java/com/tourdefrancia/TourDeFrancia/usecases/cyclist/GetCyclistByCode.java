@@ -18,7 +18,7 @@ public class GetCyclistByCode {
     }
 
     public Mono<CyclistDto> getCyclistByCode(String cyclistCode){
-        return repository.findByCode(cyclistCode).map(cyclist -> mapper.toCyclistDto(cyclist))
+        return repository.findByCyclistCode(cyclistCode).map(cyclist -> mapper.toCyclistDto(cyclist))
                 .switchIfEmpty(Mono.error(() -> new Exception("Not able to find a cyclist with the given code")));
     }
 }

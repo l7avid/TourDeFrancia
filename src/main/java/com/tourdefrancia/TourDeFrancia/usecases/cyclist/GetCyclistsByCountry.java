@@ -4,6 +4,7 @@ import com.tourdefrancia.TourDeFrancia.Dto.CyclistDto;
 import com.tourdefrancia.TourDeFrancia.mappers.CyclistMapper;
 import com.tourdefrancia.TourDeFrancia.repository.ICyclistRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -17,6 +18,7 @@ public class GetCyclistsByCountry {
         this.repository = repository;
         this.mapper = mapper;
     }
+    
 
     public Flux<CyclistDto> getCyclistsByCountry(String country){
         return repository.findByCountry(country).map(cyclist -> mapper.toCyclistDto(cyclist))
