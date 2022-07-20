@@ -18,6 +18,4 @@ public class TeamDto {
     private String teamCode;
     @NotBlank(message = "country cannot be blank!")
     private String country;
-    @Size(max = 8)
-    private List<Cyclist> cyclistsList;
 }

@@ -13,7 +13,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class GetCyclistRoute {
+public class GetAllCyclistsRoute {
 
     @Bean
     public RouterFunction<ServerResponse> getAll(GetAllCyclists getAllCyclists){

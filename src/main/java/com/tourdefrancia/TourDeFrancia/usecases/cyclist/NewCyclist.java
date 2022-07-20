@@ -35,6 +35,7 @@ public class NewCyclist {
 
 
     public Mono<CyclistDto> newCyclist(@Valid CyclistDto cyclistDto){
-            return validateCyclistCode(cyclistDto).flatMap(cyclistDto1 -> repository.save(mapper.toCyclist(cyclistDto)).map(cyclist -> mapper.toCyclistDto(cyclist)));
+            return validateCyclistCode(cyclistDto);
+//                    .flatMap(cyclistDto1 -> repository.save(mapper.toCyclist(cyclistDto)).map(cyclist -> mapper.toCyclistDto(cyclist)));
     }
 }

@@ -24,6 +24,7 @@ public class Cyclist {
     @NotBlank(message = "country cannot be blank!")
     private String country;
     @NotBlank(message = "team code cannot be blank!")
+    @Size(max = 3)
     private String teamCode;
-    
+
 }

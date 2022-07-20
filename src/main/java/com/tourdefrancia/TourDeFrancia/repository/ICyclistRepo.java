@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface ICyclistRepo extends ReactiveMongoRepository<Cyclist, String> {
 
-//    Flux<Cyclist> findByTeamCode(String teamCode);
+    Flux<Cyclist> findByTeamCode(String teamCode);
 
     Flux<Cyclist> findByCountry(String country);
 
