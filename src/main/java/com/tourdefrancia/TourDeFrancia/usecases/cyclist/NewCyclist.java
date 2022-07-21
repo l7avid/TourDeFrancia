@@ -29,8 +29,7 @@ public class NewCyclist {
         String teamCodeIncoming = cyclistDto.getTeamCode();
         Mono<Boolean> teamCode = teamRepository.existsByTeamCode(teamCodeIncoming);
         AtomicReference<Boolean> isAValidTeamCode = new AtomicReference<>(false);
-        teamCode.zipWith(Mono.empty()).map(tuple -> {
-            System.out.println("Team code exists?: " + tuple.getT1());
+        teamCode.zipWith(Mono.just("")).map(tuple -> {
             if(Boolean.TRUE.equals(tuple.getT1())){
                 isAValidTeamCode.set(true);
             }
@@ -45,14 +44,10 @@ public class NewCyclist {
     }
 
     public Boolean validateTeamSize(CyclistDto cyclistDto){
-        System.out.println(validateTeamCode(cyclistDto));
         Mono<Long> teamMembers = repository.findByTeamCode(cyclistDto.getTeamCode()).count();
         AtomicReference<Boolean> isFull = new AtomicReference<>(false);
         teamMembers.zipWith(Mono.just(8l)).map(tuple -> {
-//            System.out.println("Limit members: ");
-//            System.out.println(tuple.getT2());
             Long newTuple = tuple.getT1() + 1;
-//            System.out.println("Team members with the last one added: " + newTuple);
             if(newTuple > tuple.getT2()){
                 isFull.set(true);
             }
@@ -66,7 +61,7 @@ public class NewCyclist {
         return isFull.get();
     }
 
-    public Mono<CyclistDto> validateCyclistCode(CyclistDto cyclistDto){
+    public Mono<CyclistDto> validateCyclist(CyclistDto cyclistDto){
         String cyclistCodeIncoming = cyclistDto.getCyclistCode();
         if(!validateTeamSize(cyclistDto) && (validateTeamCode(cyclistDto))){
             return repository.existsByCyclistCode(cyclistCodeIncoming).flatMap(aBoolean -> {
@@ -81,7 +76,7 @@ public class NewCyclist {
     }
 
     public Mono<CyclistDto> newCyclist(@Valid CyclistDto cyclistDto){
-            return validateCyclistCode(cyclistDto);
+            return validateCyclist(cyclistDto);
 //                    .flatMap(cyclistDto1 -> repository.save(mapper.toCyclist(cyclistDto)).map(cyclist -> mapper.toCyclistDto(cyclist)));
     }
 }
