@@ -14,4 +14,6 @@ public interface ITeamRepo extends ReactiveMongoRepository<Team, String> {
     Mono<Team> findByTeamName(String teamName);
 
     Mono<Team> findByTeamCode(String teamCode);
+
+    Mono<Boolean> existsByTeamCode(String teamCode);
 }
